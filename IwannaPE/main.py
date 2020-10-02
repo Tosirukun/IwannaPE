@@ -1,4 +1,4 @@
-import pygame, asyncio, sys #Open Packages
+import pygame, asyncio, sys, numpy #Open Packages
 from pygame.locals import *
 
 class Client:
@@ -6,11 +6,28 @@ class Client:
         pygame.init()
         self.SURFACE = pygame.display.set_mode(size)
         pygame.display.set_caption(title)
+        clock = pygame.time.Clock()
+        
+        font = pygame.font.SysFont(None, 50)
+        self.Title = font.render(str(title), True, (0, 0, 0))
+        TitleWidth = self.Title.get_rect().width
+        TitleX = (size[0] - TitleWidth) / 2
+        
+        self.GameLoopType = 'IwannaPE_menu'
 
         self.GameLoop = True
 
         while self.GameLoop:
+            #画面の初期化
+            self.SURFACE.fill(background_color)
+            
+            #特殊キーの入力判定
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
+            
+            self.SURFACE.blit(self.Title, (TitleX, 100))
+            
+            pygame.display.update()
+            clock.tick(60)
