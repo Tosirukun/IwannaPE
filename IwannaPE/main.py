@@ -12,6 +12,8 @@ class Client:
         self.Title = font.render(str(title), True, (0, 0, 0))
         TitleWidth = self.Title.get_rect().width
         TitleX = (size[0] - TitleWidth) / 2
+
+        self.Start = font.render("game start", True, (0, 0, 0))
         
         self.GameLoopType = 'IwannaPE_menu'
 
@@ -28,6 +30,7 @@ class Client:
                     sys.exit()
             
             self.SURFACE.blit(self.Title, (TitleX, 100))
+            self.SURFACE.blit(self.Start, (TitleX, 200))
             
             pygame.display.update()
             clock.tick(60)
